@@ -1,0 +1,21 @@
+﻿[build]
+target = "arm-hisiv100-linux-uclibcgnueabi"
+
+[target.arm-hisiv100-linux-uclibcgnueabi]
+linker = "arm-hisiv100nptl-linux-gcc"
+runner = "./target-runner.sh"
+rustflags = [
+  "-C", "panic=unwind",
+  "-C", "target-cpu=cortex-a9",
+  "-C", "target-feature=+soft-float,-neon,+v7,+vfp3,+d16",
+  "-C", "link-arg=-march=armv7-a",
+  "-C", "link-arg=-mcpu=cortex-a9",
+  "-C", "link-arg=-mfloat-abi=softfp",
+  "-C", "link-arg=-mfpu=vfpv3-d16",
+]
+
+[alias]
+b = "build --features hi3531v100"
+d = "doc --features hi3531v100"
+r = "run --features hi3531v100"
+t = "test --features hi3531v100"

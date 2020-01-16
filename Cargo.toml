@@ -1,0 +1,41 @@
+﻿[package]
+name = "himipi-sys"
+version = "0.1.0"
+authors = ["Varphone Wong <varphone@qq.com>"]
+edition = "2018"
+
+# Metadata for Publish
+description = """
+Hi35XX MIPI API for Rust unsafe bindings.
+"""
+documentation = "https://docs.rs/himipi-sys"
+homepage = "https://github.com/varphone/himipi-sys"
+readme = "README.md"
+categories = ["embedded", "external-ffi-bindings"]
+license = "MIT"
+
+[dev-dependencies]
+libc = "^0.2.66"
+
+[build-dependencies]
+bindgen = "0.52.0"
+regex = "1.3"
+
+[patch.crates-io]
+bindgen = { git = "https://github.com/varphone/rust-bindgen.git", rev = "v0.52.0-sp1" }
+
+[features]
+default = [ ]
+hi3516ev200 = []
+hi3516ev300 = []
+hi3518ev200 = []
+hi3518ev300 = []
+hi3519av100 = []
+hi3531v100 = []
+hi3559av100 = []
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 'z'
+panic = "abort"
