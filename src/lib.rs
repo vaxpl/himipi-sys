@@ -1,4 +1,4 @@
-﻿#![allow(non_upper_case_globals)]
+#![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
 
@@ -51,6 +51,30 @@ pub const HI_MIPI_DISABLE_SENSOR_CLOCK: u32 = 1074031889;
 
 /// Clear all states of the combo device.
 pub const HI_MIPI_CLEAR: u32 = 1074031890;
+
+impl std::fmt::Debug for mipi_dev_attr_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "mipi_dev_attr_t {{ input_data_type: {:?}, wdr_mode: {:?}, lane_id: {:?} }}",
+            self.input_data_type, self.wdr_mode, self.lane_id
+        )
+    }
+}
+
+impl std::fmt::Debug for combo_dev_attr_t {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let comm = format!(
+            "devno: {:?}, input_mode: {:?}, data_rate: {:?}, img_rect: {:?}",
+            self.devno, self.input_mode, self.data_rate, self.img_rect
+        );
+        let spec = match self.input_mode {
+            input_mode_t::INPUT_MODE_MIPI => unsafe { format!("{:?}", self.un1.mipi_attr) },
+            _ => String::new(),
+        };
+        write!(f, "combo_dev_attr_t {{ {}, {} }}", comm, spec)
+    }
+}
 
 #[cfg(test)]
 mod tests {
