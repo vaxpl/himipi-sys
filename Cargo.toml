@@ -1,6 +1,6 @@
 ﻿[package]
 name = "himipi-sys"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Varphone Wong <varphone@qq.com>"]
 edition = "2018"
 
