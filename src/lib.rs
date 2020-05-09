@@ -1,56 +1,58 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 #![allow(non_snake_case)]
+#![allow(clippy::redundant_static_lifetimes)]
+#![allow(clippy::unreadable_literal)]
 
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 /// Initialize data lane, input mode, data type.
-pub const HI_MIPI_SET_DEV_ATTR: u32 = 1113615617;
+pub const HI_MIPI_SET_DEV_ATTR: u32 = 1_113_615_617;
 
 /// Set phy common mode voltage mode.
-pub const HI_MIPI_SET_PHY_CMVMODE: u32 = 1074294020;
+pub const HI_MIPI_SET_PHY_CMVMODE: u32 = 1_074_294_020;
 
 /// Reset sensor.
-pub const HI_MIPI_RESET_SENSOR: u32 = 1074031877;
+pub const HI_MIPI_RESET_SENSOR: u32 = 1_074_031_877;
 
 /// Unreset sensor.
-pub const HI_MIPI_UNRESET_SENSOR: u32 = 1074031878;
+pub const HI_MIPI_UNRESET_SENSOR: u32 = 1_074_031_878;
 
 /// Reset mipi.
-pub const HI_MIPI_RESET_MIPI: u32 = 1074031879;
+pub const HI_MIPI_RESET_MIPI: u32 = 1_074_031_879;
 
 /// Unreset mipi.
-pub const HI_MIPI_UNRESET_MIPI: u32 = 1074031880;
+pub const HI_MIPI_UNRESET_MIPI: u32 = 1_074_031_880;
 
 /// Reset slvs.
-pub const HI_MIPI_RESET_SLVS: u32 = 1074031881;
+pub const HI_MIPI_RESET_SLVS: u32 = 1_074_031_881;
 
 /// Unreset slvs.
-pub const HI_MIPI_UNRESET_SLVS: u32 = 1074031882;
+pub const HI_MIPI_UNRESET_SLVS: u32 = 1_074_031_882;
 
 /// Set mipi hs_mode.
-pub const HI_MIPI_SET_HS_MODE: u32 = 1074031883;
+pub const HI_MIPI_SET_HS_MODE: u32 = 1_074_031_883;
 
 /// Enable mipi clock.
-pub const HI_MIPI_ENABLE_MIPI_CLOCK: u32 = 1074031884;
+pub const HI_MIPI_ENABLE_MIPI_CLOCK: u32 = 1_074_031_884;
 
 /// Disable mipi clock.
-pub const HI_MIPI_DISABLE_MIPI_CLOCK: u32 = 1074031885;
+pub const HI_MIPI_DISABLE_MIPI_CLOCK: u32 = 1_074_031_885;
 
 /// Enable slvs clock.
-pub const HI_MIPI_ENABLE_SLVS_CLOCK: u32 = 1074031886;
+pub const HI_MIPI_ENABLE_SLVS_CLOCK: u32 = 1_074_031_886;
 
 /// Disable slvs clock.
-pub const HI_MIPI_DISABLE_SLVS_CLOCK: u32 = 1074031887;
+pub const HI_MIPI_DISABLE_SLVS_CLOCK: u32 = 1_074_031_887;
 
 /// Enable sensor clock.
-pub const HI_MIPI_ENABLE_SENSOR_CLOCK: u32 = 1074031888;
+pub const HI_MIPI_ENABLE_SENSOR_CLOCK: u32 = 1_074_031_888;
 
 /// Disable sensor clock.
-pub const HI_MIPI_DISABLE_SENSOR_CLOCK: u32 = 1074031889;
+pub const HI_MIPI_DISABLE_SENSOR_CLOCK: u32 = 1_074_031_889;
 
 /// Clear all states of the combo device.
-pub const HI_MIPI_CLEAR: u32 = 1074031890;
+pub const HI_MIPI_CLEAR: u32 = 1_074_031_890;
 
 impl std::fmt::Debug for mipi_dev_attr_t {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
