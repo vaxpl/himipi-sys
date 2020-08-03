@@ -186,7 +186,7 @@ fn main() -> Result<(), DynError> {
         .default_enum_style(bindgen::EnumVariation::Rust {
             non_exhaustive: false,
         })
-        .union_fields_prefix("un")
+        .anon_fields_prefix("un")
         .derive_debug(true)
         .impl_debug(false)
         .derive_default(true)
