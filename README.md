@@ -87,18 +87,6 @@ cargo b
 > The `hi3559av100` specified the target board, you can change to others,
 > like: `hi3531v100`
 
-**Patch bindgen**:
-
-The package use a patched bindgen to generate ffi bindings,
-you must patch the crates.io to replace the bindgen with the patched version.
-
-```toml
-# Cargo.toml
-
-[patch.crates-io]
-bindgen = { git = "https://github.com/varphone/rust-bindgen.git", rev = "v0.52.0-sp1" }
-```
-
 Examples
 --------
 
