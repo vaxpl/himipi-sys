@@ -1,6 +1,8 @@
 himipi-sys
 ==========
 
+[![Build Status](https://192.168.0.2:7443/api/badges/rdst/himipi-sys/status.svg?ref=refs/heads/{{BRANCH_NAME}})](https://192.168.0.2:7443/rdst/himipi-sys)
+
 Hi35XX MIPI API for Rust unsafe bindings.
 
 Requirements
