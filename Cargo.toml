@@ -9,7 +9,7 @@ description = """
 Hi35XX MIPI API for Rust unsafe bindings.
 """
 documentation = "https://docs.rs/himipi-sys"
-homepage = "https://github.com/varphone/himipi-sys"
+homepage = "https://github.com/vaxpl/himipi-sys"
 readme = "README.md"
 categories = ["embedded", "external-ffi-bindings"]
 license = "MIT"
