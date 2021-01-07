@@ -7,6 +7,11 @@
 include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 /// Initialize data lane, input mode, data type.
+#[cfg(any(sdkver = "2.0.3.0", sdkver = "2.0.3.1"))]
+pub const HI_MIPI_SET_DEV_ATTR: u32 = 1_114_402_049;
+
+/// Initialize data lane, input mode, data type.
+#[cfg(not(any(sdkver = "2.0.3.0", sdkver = "2.0.3.1")))]
 pub const HI_MIPI_SET_DEV_ATTR: u32 = 1_113_615_617;
 
 /// Set phy common mode voltage mode.
