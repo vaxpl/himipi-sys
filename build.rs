@@ -1,7 +1,8 @@
+use chrono::{NaiveDate, NaiveDateTime};
 use regex::Regex;
 use std::env;
 use std::fs::File;
-use std::io::Write;
+use std::io::{BufRead, BufReader, Write};
 use std::path::{Path, PathBuf};
 
 type DynError = Box<dyn std::error::Error>;
@@ -79,6 +80,32 @@ fn detect_mpp_path(mpp_dir: &str) -> Result<PathBuf, DynError> {
         }
     }
     MyErr!(format!("The `MPP_DIR={}` does not detected!", mpp_dir))
+}
+
+fn detect_sdkver(mpp_dir: &str) -> Option<&str> {
+    let autoconf = Path::new(mpp_dir).join("include").join("autoconf.h");
+    if let Ok(file) = File::open(autoconf) {
+        let re = Regex::new(r#"#define\sAUTOCONF_TIMESTAMP\s"([^"]+)""#).unwrap();
+        let reader = BufReader::new(file);
+        for line in reader.lines() {
+            if let Ok(ref line) = line {
+                if let Some(caps) = re.captures(line) {
+                    if let Ok(ts) = NaiveDateTime::parse_from_str(&caps[1], "%Y-%m-%d %H:%M:%S CST")
+                    {
+                        let ymd = ts.date();
+                        if ymd == NaiveDate::from_ymd(2018, 12, 21) {
+                            return Some("2.0.2.0"); // Hi3559AV100_SDK_V2.0.2.0
+                        } else if ymd == NaiveDate::from_ymd(2019, 9, 16) {
+                            return Some("2.0.3.1"); // Hi3559AV100_SDK_V2.0.3.1
+                        } else {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    None
 }
 
 fn setup_envir() -> Result<(), DynError> {
@@ -163,6 +190,10 @@ fn main() -> Result<(), DynError> {
     let mpp_dir = env::var("MPP_DIR").unwrap();
     if !Path::new(&mpp_dir).exists() {
         return MyErr!(format!("The `MPP_DIR={}` does not exists", mpp_dir));
+    }
+
+    if let Some(ver) = detect_sdkver(&mpp_dir) {
+        println!("cargo:rustc-cfg=sdkver=\"{}\"", ver);
     }
 
     println!("cargo:rustc-link-search=native={}/lib", mpp_dir);
